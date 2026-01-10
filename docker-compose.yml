@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    image: anto-beauty-art:latest
+    container_name: anto_beauty_web
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
