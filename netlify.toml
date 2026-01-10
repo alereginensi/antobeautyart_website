@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    # HSTS (Strict-Transport-Security) only usually recommended if you are sure about subdomains
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Redirect default to index is handled automatically by Netlify for static sites
+
+# Example redirect if you ever change structure
+# [[redirects]]
+#   from = "/old-path"
+#   to = "/new-path"
+#   status = 301
